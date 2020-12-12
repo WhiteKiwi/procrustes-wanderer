@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common'
 import { WandererService } from './service'
 
-@Controller()
+@Controller('users')
 export class WandererController {
 	constructor(private readonly wandererService: WandererService) {}
 

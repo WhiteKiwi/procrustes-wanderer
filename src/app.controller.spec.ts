@@ -32,7 +32,9 @@ describe('AppController', () => {
 
 	describe('root', () => {
 		it('should return "Hello World!"', () => {
-			expect(appController.getVersion().version).toBe(appService.getVersion())
+			expect(appController.getVersion().version).toBe(
+				appService.getVersion(),
+			)
 		})
 	})
 })
