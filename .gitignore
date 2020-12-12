@@ -30,4 +30,4 @@ lerna-debug.log*
 /.vscode
 
 # ENV file
-.env
+/.env
