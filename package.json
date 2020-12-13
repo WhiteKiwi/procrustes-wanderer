@@ -14,7 +14,9 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node server/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "fetch-submodules": "git submodule foreach git reset --hard origin/main",
     "test": "jest",
+    "test:fetch": "npm run fetch-submodules && jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
@@ -54,12 +56,12 @@
     "typescript": "^4.0.5"
   },
   "jest": {
+    "globalSetup": "./test/global-setup/setup.ts",
     "moduleFileExtensions": [
       "js",
       "json",
       "ts"
     ],
-    "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
