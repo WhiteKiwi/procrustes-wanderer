@@ -7,9 +7,12 @@ import GetConfigModule from '../config'
 import { UserSession } from '../models'
 import { UserSessionRepository } from './user-session'
 
+import { scylla } from '../../test/test-env/src/index'
+
 describe('UserSessionRepository', () => {
 	let userSessionRepository: UserSessionRepository
 	let mockedUserSession: UserSession
+	let mockData: any
 
 	beforeEach(async () => {
 		const configModule: TestingModule = await Test.createTestingModule({
@@ -25,6 +28,8 @@ describe('UserSessionRepository', () => {
 		mockedUserSession.uuid = '30150097-d1ca-47a0-baed-5c39bde6fdd0'
 		mockedUserSession.accessToken = 'abcd'
 		mockedUserSession.refreshToken = 'efgh'
+
+		mockData = scylla.mockData
 	})
 
 	describe('create', () => {
@@ -34,8 +39,14 @@ describe('UserSessionRepository', () => {
 	})
 
 	describe('findByUuid', () => {
-		it('should return user-session', async () => {
+		it('should return created user-session', async () => {
 			await userSessionRepository.findByUuid(mockedUserSession.uuid)
+		})
+
+		it('should return exist user-session', async () => {
+			await userSessionRepository.findByUuid(
+				mockData.userSessions[0].uuid,
+			)
 		})
 	})
 })

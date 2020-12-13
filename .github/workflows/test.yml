@@ -18,12 +18,14 @@ jobs:
           cache-name: cache-node-modules
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-modules-
+            ${{ runner.os }}-${{ env.cache-name }}-
       - name: Install Dependencies
         if: steps.node-cache.outputs.cache-hit != 'true'
         run: npm install
+      - name: Install Git Submodules
+        run: npm run submodules:install
       - name: create env file
         env:
           ENVIORNMENT_VARIABLES: ${{ secrets.ENVIORNMENT_VARIABLES }}
