@@ -1,9 +1,17 @@
 export const PORT = 'PORT'
 export const ENVIRONMENT = 'ENVIRONMENT'
+export const SCYLLA = {
+	END_POINTS: 'SCYLLA.END_POINTS',
+	KEY_SPACE: 'SCYLLA.KEY_SPACE',
+	DATA_CENTER: 'SCYLLA.DATA_CENTER',
+	USER_NAME: 'SCYLLA.USER_NAME',
+	PASSWORD: 'SCYLLA.PASSWORD',
+}
 
 const constants = {
 	PORT,
 	ENVIRONMENT,
+	SCYLLA,
 }
 
 export default constants
